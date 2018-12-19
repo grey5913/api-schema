@@ -1,0 +1,7 @@
+./swift_dependency/\!ProtoCompiler/protoc \
+    --plugin=./swift_dependency/Proto/protoc-gen-swift \
+	--swift_out=test \
+	-I include \
+	-I proto \
+	-I swift_dependency/\!ProtoCompiler/ \
+	proto/*.proto include/google/protobuf/descriptor.proto
