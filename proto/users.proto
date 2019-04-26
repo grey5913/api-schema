@@ -58,6 +58,7 @@ enum UserStatusType {
     USERSTATUSTYPE_AWAY = 2;
     USERSTATUSTYPE_DONOTDISTURB = 3;
     USERSTATUSTYPE_INVISIBLE = 4;
+    USERSTATUSTYPE_BUSY = 5;
 }
 
 // User's status
@@ -239,6 +240,7 @@ message UpdateUserCustomProfileChanged {
 message UpdateUserStatusChanged {
     int32 uid = 1 [(dlg).log="visible"];
     UserStatus status = 2 [(dlg).log="visible"];
+    int64 clock = 3;
 }
 
 message UpdateUserExtChanged {
