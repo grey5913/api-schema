@@ -54,6 +54,10 @@ message SimpleUserProfileSearchCondition {
     string query_string = 1;
 }
 
+message SimpleGroupSearchCondition {
+    string query_string = 1;
+}
+
 message criterion {
 }
 
@@ -63,6 +67,7 @@ message SimpleSearchCondition {
         SimpleMessageSearchCondition message = 2;
         SimplePeerSearchCondition peer = 3;
         SimpleUserProfileSearchCondition userProfile = 4;
+        SimpleGroupSearchCondition group = 5;
     }
 }
 
@@ -254,6 +259,15 @@ message ResponseLoadUserSearchByPredicatesCount {
     int32 result_count = 1 [(dlg).log = "visible"];
 }
 
+message RequestGetRecommendations {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
+}
+
+message ResponseGetRecommendations {
+    option (scalapb.message).extends = "im.dlg.grpc.GrpcResponse";
+    repeated OutPeer peers = 1;
+}
+
 
 service Search {
     /// Search among groups/users/contacts
@@ -317,4 +331,10 @@ service Search {
         };
     }
 
+    rpc GetRecommendations (RequestGetRecommendations) returns (ResponseGetRecommendations) {
+        option (google.api.http) = {
+            post: "/v1/grpc/Search/GetRecommendations"
+            body: "*"
+        };
+    }
 }
