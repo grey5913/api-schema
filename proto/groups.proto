@@ -331,7 +331,8 @@ message RequestEditGroupBasePermissions {
     option (scalapb.message).extends = "im.dlg.grpc.GrpcRequest";
     GroupOutPeer group_peer = 1 [(dlg).log="visible"];
     int64 random_id = 2 [(dlg).log="visible"]; /// Id for query deduplication
-    repeated GroupAdminPermission base_permissions = 3 [(dlg).log="visible"];
+    repeated GroupAdminPermission granted_permissions = 3 [(dlg).log="visible"];
+    repeated GroupAdminPermission revoked_permissions = 4 [(dlg).log="visible"];
 }
 
 // Inviting user to group
